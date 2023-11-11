@@ -2,7 +2,7 @@ import React from "react";
 
 import "bootstrap/dist/css/bootstrap.css";
 
-const Header = () => {
+const Header = (props) => {
   return (
     <>
       <nav className="navbar navbar-expand navbar-dark bg-dark ">
@@ -10,10 +10,13 @@ const Header = () => {
           <a href="#home">Home</a>
         </div>
         <div className="container-sm">
-        <a href="#Store">Store</a>
+          <a href="#Store">Store</a>
         </div>
         <div className="container-sm">
-        <a href="#About">About</a>
+          <a href="#About">About</a>
+        </div>
+        <div className="container-sm">
+          <button onClick={props.onShowCart}>Cart</button>
         </div>
       </nav>
       <div className="container">

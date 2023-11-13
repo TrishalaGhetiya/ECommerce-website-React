@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Footer from "./Layout/Footer";
-import Header from "./Layout/Header";
+import { Button } from "react-bootstrap";
+import Header from "./components/Layout/Header";
 import ProductList from "./components/Products/ProductList";
-import Cart from "./components/Cart/Cart";
+
 
 
 
@@ -18,13 +18,17 @@ function App() {
   }
   return (
     <>
-      {cartIsShown && <Cart onClose={hideCartHandler} />}
-      <Header onShowCart={showCartHandler} />
-      <main>
-        <ProductList />
-      </main>
-      <Footer />
+    <Header/>
+    <ProductList/>
     </>
+    // <CartProvider>
+    //   {cartIsShown && <Cart onClose={hideCartHandler} />}
+    //   <Header onShowCart={showCartHandler} />
+    //   <main>
+    //     <ProductList />
+    //   </main>
+    //   <Footer />
+    // </CartProvider>
   );
 }
 

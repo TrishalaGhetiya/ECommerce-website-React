@@ -1,8 +1,9 @@
 import React from "react";
 
 import "bootstrap/dist/css/bootstrap.css";
-import Modal from "../../UI/Modal";
+import Modal from "../UI/Modal";
 import classes from './Cart.module.css';
+import CartItem from "./CartItem";
 
 const cartElements = [
   {
@@ -26,16 +27,19 @@ const cartElements = [
 ];
 
 const Cart = (props) => {
-    const cartList = cartElements.map((element) => (
-        <div>
-        <div>{element.title}</div>
-        <div>{element.price}</div>
-        <div>{element.quantity}</div>
-        </div>
-    ));
+  const cartItems = (<ul className={classes["cart-items"]}>
+      {cartElements.map((item) => (
+        <CartItem
+          title={item.title}
+          price={item.price}
+          quantity={item.quantity}
+        />
+      ))}
+    </ul>
+  );
   return (
     <Modal onClose={props.onClose}>
-        {cartList}
+        {cartItems}
         <div className={classes.actions}>
         <button className={classes["classes--alt"]} onClick={props.onClose}>
           Close

@@ -1,20 +1,18 @@
-import classes from './CartItem.module.css';
+import { Button } from "react-bootstrap";
 
 const CartItem = (props) => {
   return (
-    <li className={classes['cart-item']}>
-      <div>
-        <h2>{props.title}</h2>
-        <div className={classes.summary}>
-          <span className={classes.price}>{props.price}</span>
-          <span className={classes.amount}>x {props.quantity}</span>
+    <tr>
+      <td>{props.title}</td>
+      <td>{props.price}</td>
+      <td>
+        <div>
+          <Button variant="outline-dark" onClick={props.onRemove}>-</Button>
+          <span>{" "}{props.quantity}{" "}</span>
+          <Button variant="outline-dark" onClick={props.onAdd}>+</Button>
         </div>
-      </div>
-      <div className={classes.actions}>
-        <button onClick={props.onRemove}>−</button>
-        <button onClick={props.onAdd}>+</button>
-      </div>
-    </li>
+      </td>
+    </tr>
   );
 };
 

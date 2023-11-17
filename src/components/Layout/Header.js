@@ -13,7 +13,7 @@ const Header = (props) => {
       <Navbar bg="dark" variant="dark">
         <Container>
           <Nav>
-            <Nav.Link href="#home">Home</Nav.Link>;
+            <Nav.Link href="/Home">Home</Nav.Link>;
             <Nav.Link href="/">Store</Nav.Link>
             <Nav.Link href="/AboutUs">About</Nav.Link>
           </Nav>

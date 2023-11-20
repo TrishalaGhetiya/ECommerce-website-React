@@ -1,9 +1,9 @@
 import React from "react";
-import { Button, Table } from "react-bootstrap";
+import { Button, Container, Table } from "react-bootstrap";
 
 const Home = (props) => {
   return (
-    <>
+    <Container>
     <h1 style={{textAlign:'center'}}>TOURS</h1>
     <div>
         <Table>
@@ -58,7 +58,7 @@ const Home = (props) => {
       </Table>
       </div>
      
-    </>
+    </Container>
   );
 };
 

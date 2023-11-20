@@ -1,24 +1,37 @@
 import React from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Store from "./pages/Store";
 import About from "./pages/About";
-import Root from "./pages/Root";
 import Home from "./pages/Home";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root />,
-    children: [
-      { path: "/", element: <Store /> },
-      { path: "/AboutUs", element: <About /> },
-      { path: "Home", element: <Home /> },
-    ],
-  },
-]);
+import Header from "./components/Layout/Header";
+import CartProvider from "./store/cartProvider";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import Contact from "./pages/Contact";
 
 function App() {
-  return <RouterProvider router={router} />;
+
+  const location = useLocation();
+  const isStorePage = location.pathname === '/Store';
+
+  return (
+    <CartProvider>
+      <Header isStorePage={isStorePage} />
+      <main>
+        <Route path="/Home">
+          <Home />
+        </Route>
+        <Route path="/AboutUs">
+          <About />
+        </Route>
+        <Route path="/Store">
+          <Store />
+        </Route>
+        <Route path="/ContactUs">
+          <Contact />
+        </Route>
+      </main>
+    </CartProvider>
+  );
 }
 
 export default App;

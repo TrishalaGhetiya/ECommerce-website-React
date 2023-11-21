@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import CartContext from "../../store/cart-context";
 import { Button, Card, Container, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const productsArr = [
   {
@@ -56,7 +57,7 @@ const ProductList = (props) => {
                   <Card.Body>
                     <Card.Title className="text-center">{title}</Card.Title>
                   </Card.Body>
-                  <Card.Img variant="top" src={imageUrl} />
+                  <Link to={`/Store/${product.id}`}><Card.Img variant="top" src={imageUrl} /></Link>
                   <Card.Footer>
                     <p>
                       {price}

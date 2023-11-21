@@ -5,8 +5,9 @@ import About from "./pages/About";
 import Home from "./pages/Home";
 import Header from "./components/Layout/Header";
 import CartProvider from "./store/cartProvider";
-import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import { Redirect, Switch, useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import Contact from "./pages/Contact";
+import ProductDetail from "./pages/ProductDetails";
 
 function App() {
 
@@ -17,18 +18,26 @@ function App() {
     <CartProvider>
       <Header isStorePage={isStorePage} />
       <main>
+        <Switch>
+          <Route path='/' exact>
+            <Redirect to='/Home' />
+          </Route>
         <Route path="/Home">
           <Home />
         </Route>
         <Route path="/AboutUs">
           <About />
         </Route>
-        <Route path="/Store">
+        <Route path="/Store" exact>
           <Store />
         </Route>
         <Route path="/ContactUs">
           <Contact />
         </Route>
+        <Route path="/Store/:ProductId">
+          <ProductDetail />
+        </Route>
+        </Switch>
       </main>
     </CartProvider>
   );

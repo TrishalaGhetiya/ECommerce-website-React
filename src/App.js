@@ -11,9 +11,9 @@ import {
   useLocation,
 } from "react-router-dom/cjs/react-router-dom.min";
 import Contact from "./pages/Contact";
-import ProductDetail from "./pages/ProductDetails";
 import Login from "./pages/Login";
 import AuthContext from "./store/auth-context";
+import ProductDetails from "./pages/ProductDetails";
 
 function App() {
   const location = useLocation();
@@ -60,7 +60,7 @@ function App() {
             <Contact />
           </Route>
           {isLoggedIn && <Route path="/Store/:ProductId" exact>
-            <ProductDetail />
+            <ProductDetails />
           </Route>}
         </Switch>
       </main>

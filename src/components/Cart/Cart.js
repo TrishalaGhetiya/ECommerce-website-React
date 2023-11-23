@@ -3,9 +3,14 @@ import { Button, Offcanvas, Table } from "react-bootstrap";
 
 import CartItem from "./CartItem";
 import CartContext from "../../store/cart-context";
+import AuthContext from "../../store/auth-context";
 
 const Cart = (props) => {
   const cartCtx = useContext(CartContext);
+  const authCtx = useContext(AuthContext);
+  const email = authCtx.email;
+  
+  
 
   const totalAmount = cartCtx.totalAmount;
 
@@ -18,6 +23,31 @@ const Cart = (props) => {
   const cartItemRemoveHandler = (id) => {
     cartCtx.removeItem(id);
   };
+  let cartItemsToShow = '';
+  if(email !== null){
+    const updatedEmail = email.replace(/[^A-Za-z0-9]/g, '');
+    fetch(`https://crudcrud.com/api/6ea0f3c4bea64cca96ce45a0c4681632/cart${updatedEmail}`)
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      cartItemsToShow = 
+      data.map((item) => (
+        <CartItem
+          key={item.id}
+          title={item.title}
+          price={item.price}
+          quantity={item.quantity}
+          imageUrl={item.imageUrl}
+          onAdd={cartItemAddHandler.bind(null, item)}
+          onRemove={cartItemRemoveHandler.bind(null, item.id)}
+        />
+      ))
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+  
 
   const cartItems = (
     <Table striped bordered hover>
@@ -29,17 +59,7 @@ const Cart = (props) => {
         </tr>
       </thead>
       <tbody>
-        {cartCtx.items.map((item) => (
-          <CartItem
-            key={item.id}
-            title={item.title}
-            price={item.price}
-            quantity={item.quantity}
-            imageUrl={item.imageUrl}
-            onAdd={cartItemAddHandler.bind(null, item)}
-            onRemove={cartItemRemoveHandler.bind(null, item.id)}
-          />
-        ))}
+        {cartItemsToShow}
       </tbody>
     </Table>
   );

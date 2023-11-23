@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import CartContext from "../../store/cart-context";
 import { Button, Card, Container, Row, Col } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+import AuthContext from "../../store/auth-context";
 
 const productsArr = [
   {
@@ -35,7 +36,27 @@ const productsArr = [
 
 const ProductList = (props) => {
   const cartCtx = useContext(CartContext);
+  const authCtx = useContext(AuthContext);
+  const email = authCtx.email;
+  const updatedEmail = email.replace(/[^A-Za-z0-9]/g, '');
+
   const addToCartHandler = (product) => {
+    fetch(`https://crudcrud.com/api/6ea0f3c4bea64cca96ce45a0c4681632/cart${updatedEmail}`, {
+      method: 'POST',
+      body: JSON.stringify({
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        quantity: 1
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(res => {
+        res.json();
+    }).then(data => {
+      console.log(data);
+    })
     cartCtx.addItem({
       id: product.id,
       title: product.title,

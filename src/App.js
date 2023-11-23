@@ -52,9 +52,10 @@ function App() {
           <Route path="/AboutUs">
             <About />
           </Route>
-          {isLoggedIn && <Route path="/Store" exact>
-            <Store />
-          </Route>}
+          <Route path="/Store" exact>
+            {!isLoggedIn && <Redirect to="/Login" />}
+            {isLoggedIn && <Store />}
+          </Route>
           <Route path="/ContactUs">
             <Contact />
           </Route>

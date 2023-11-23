@@ -36,7 +36,7 @@ const Header = (props) => {
         <Container>
           <Nav>
             <Nav.Link href="/Home">Home</Nav.Link>;
-            <Nav.Link href="/Store">Store</Nav.Link>
+            {authCtx.isLoggedIn && <Nav.Link href="/Store">Store</Nav.Link>}
             <Nav.Link href="/AboutUs">About</Nav.Link>
             <Nav.Link href="/ContactUs">Contact Us</Nav.Link>
             {!authCtx.isLoggedIn && <Nav.Link href="/Login">Login</Nav.Link>}

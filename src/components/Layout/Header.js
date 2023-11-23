@@ -3,9 +3,19 @@ import { Container, Navbar, Nav, Button, Badge } from "react-bootstrap";
 import CartContext from "../../store/cart-context";
 import { NavLink } from "react-router-dom";
 import Cart from "../Cart/Cart";
+import AuthContext from "../../store/auth-context";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const Header = (props) => {
+  const history = useHistory();
+  const authCtx = useContext(AuthContext);
   const [cartIsShown, setCartIsShown] = useState(false);
+
+  const logoutHandler = () => {
+    authCtx.logout();
+    localStorage.removeItem('token');
+    history.replace('/Login');
+  }
 
   const showCartHandler = () => {
     setCartIsShown(true);
@@ -29,8 +39,10 @@ const Header = (props) => {
             <Nav.Link href="/Store">Store</Nav.Link>
             <Nav.Link href="/AboutUs">About</Nav.Link>
             <Nav.Link href="/ContactUs">Contact Us</Nav.Link>
+            {!authCtx.isLoggedIn && <Nav.Link href="/Login">Login</Nav.Link>}
           </Nav>
         </Container>
+        {authCtx.isLoggedIn && <Button onClick={logoutHandler}>Logout</Button>}
         {props.isStorePage && <Button onClick={showCartHandler}>
           Cart{" "}
           <Badge pill bg="light" text="dark" position="top-right">

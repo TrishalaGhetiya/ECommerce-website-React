@@ -30,6 +30,8 @@ const Header = (props) => {
   const numberOfCartItems = cartCtx.items.reduce((currNumber, item) => {
     return currNumber + item.quantity;
   }, 0);
+
+  
   return (
     <>
       <Navbar bg="dark" variant="dark">

@@ -22,7 +22,7 @@ function App() {
   const authCtx = useContext(AuthContext);
   const isLoggedIn = authCtx.isLoggedIn;
 
-  var minutes = 5;
+  var minutes = 15;
   var now = new Date().getTime();
   var setupTime = localStorage.getItem('setupTime');
   if(setupTime == null){

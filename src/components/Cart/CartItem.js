@@ -7,9 +7,12 @@ const CartItem = (props) => {
       <td>{props.price}</td>
       <td>
         <div>
-          <Button variant="outline-dark" onClick={props.onRemove}>-</Button>
-          <span>{" "}{props.quantity}{" "}</span>
-          <Button variant="outline-dark" onClick={props.onAdd}>+</Button>
+          <span>{props.quantity}</span>
+          <Button className="float-end" variant="outline-dark" onClick={props.onRemove}>
+            x
+          </Button>
+
+          {/* <Button variant="ouentertline-dark" onClick={props.onAdd}>+</Button> */}
         </div>
       </td>
     </tr>

@@ -40,8 +40,9 @@ const Login = () => {
         }
       })
       .then((data) => {
-        authCtx.login(data.idToken, data.email);
-        history.replace("/Store");
+        const email = data.email.replace(/[^A-Za-z0-9]/g, '');
+        authCtx.login(data.idToken, email);
+        history.push("/Store");
       })
       .catch((err) => {
         alert(err.message);

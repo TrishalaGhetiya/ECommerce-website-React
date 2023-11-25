@@ -14,7 +14,7 @@ const Header = (props) => {
   const logoutHandler = () => {
     authCtx.logout();
     localStorage.removeItem('token');
-    history.replace('/Login');
+    history.push('/Login');
   }
 
   const showCartHandler = () => {
@@ -31,7 +31,7 @@ const Header = (props) => {
     return currNumber + item.quantity;
   }, 0);
 
-  
+
   return (
     <>
       <Navbar bg="dark" variant="dark">

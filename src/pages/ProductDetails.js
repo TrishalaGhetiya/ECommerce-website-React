@@ -1,6 +1,7 @@
-import React from "react";
-import { Col, Container, Row, Image } from "react-bootstrap";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import React, { useContext } from "react";
+import { Col, Container, Row, Image, Button } from "react-bootstrap";
+import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
+import CartContext from "../store/cart-context";
 
 const productsArr = [
   {
@@ -33,18 +34,42 @@ const productsArr = [
 ];
 
 const ProductDetails = () => {
+  const history = useHistory();
+  const cartCtx = useContext(CartContext);
+
+  const addToCartHandler = (product) => {
+    const { id, title, price, imageUrl } = product;
+    const item = { id, title, price, imageUrl, quantity: 1 };
+
+    const existingCartItemIndex = cartCtx.items.findIndex(
+      (item) => item.id === product.id
+    );
+
+    if(existingCartItemIndex !== -1) {
+      return alert('Item is already present');
+    }
+
+    cartCtx.addItem(item);
+  };
   const params = useParams();
 
   const product = productsArr.find(
     (product) => product.id === params.ProductId
   );
 
+  const goBackToProductsPageHandler = () => {
+    history.push('/Store');
+  }
+
   return (
     <>
     <Container>
       <Row className="p-3">
         <Col><Image src={product.imageUrl} rounded /></Col>
-        <Col><h1>{product.title}</h1></Col>
+        <Col><h1>{product.title}</h1>
+        <Button onClick={goBackToProductsPageHandler}>Back</Button>
+        <Button onClick={() => addToCartHandler(product)}>Add To Cart</Button>
+        </Col>
       </Row>
       </Container>
     </>

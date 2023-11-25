@@ -4,7 +4,7 @@ import CartContext from "../../store/cart-context";
 import { NavLink } from "react-router-dom";
 import Cart from "../Cart/Cart";
 import AuthContext from "../../store/auth-context";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const Header = (props) => {
   const history = useHistory();

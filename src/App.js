@@ -14,6 +14,8 @@ import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import AuthContext from "./store/auth-context";
 import ProductDetails from "./pages/ProductDetails";
+import { Toaster } from "react-hot-toast";
+import Footer from "./components/Layout/Footer";
 
 function App() {
   const location = useLocation();
@@ -64,6 +66,7 @@ function App() {
           </Route>}
         </Switch>
       </main>
+    <Footer />
     </CartProvider>
   );
 }

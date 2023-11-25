@@ -11,7 +11,6 @@ const CartItem = (props) => {
           <Button className="float-end" variant="outline-dark" onClick={props.onRemove}>
             x
           </Button>
-
           {/* <Button variant="ouentertline-dark" onClick={props.onAdd}>+</Button> */}
         </div>
       </td>

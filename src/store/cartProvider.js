@@ -9,6 +9,7 @@ import {
   deleteDataFromCart,
   getCartData,
 } from "../helper-functions/database-requests";
+import toast from "react-hot-toast";
 
 const defaultCartState = {
   items: [],
@@ -109,6 +110,7 @@ const CartProvider = (props) => {
     addDataToCart(authCtx.email, item)
       .then(({ data }) => {
         dispatchCartAction({ type: "ADD", item: data });
+        toast.success('Item added to the cart');
       })
       .catch((err) => console.log(err.message));
   };

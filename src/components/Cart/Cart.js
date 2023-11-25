@@ -3,13 +3,11 @@ import { Button, Offcanvas, Table } from "react-bootstrap";
 
 import CartItem from "./CartItem";
 import CartContext from "../../store/cart-context";
-import AuthContext from "../../store/auth-context";
+// import AuthContext from "../../store/auth-context";
 
 const Cart = (props) => {
   const cartCtx = useContext(CartContext);
-  const authCtx = useContext(AuthContext);
-
-  const email = authCtx.email;
+  // const authCtx = useContext(AuthContext);
 
   const totalAmount = cartCtx.totalAmount;
 
